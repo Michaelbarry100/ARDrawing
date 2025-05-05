@@ -11,6 +11,7 @@ function Navigation() {
             <Stack.Navigator>
                 <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
                 <Stack.Screen name="AppNavigation" component={AppNavigation} options={{ headerShown: false }} />
+                <Stack.Screen name="Home" component={HomeScreen} />
                 {/*<Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="Search" component={Search} />
