@@ -9,7 +9,7 @@ import FavoriteScreen from '../screens/FavoriteScreen';
 import DrawingScreen from '../screens/DrawingScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import PreviewScreen from '../screens/PreviewScreen';
-//import HowToUseScreen from '../screens/HowToUseScreen';
+import HowToUseScreen from '../screens/HowToUseScreen';
 
 const Stack = createStackNavigator();
 
@@ -22,7 +22,6 @@ const MainNavigator = () => {
       }}
     >
       <Stack.Screen name="Drawing" component={DrawingScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="TextToSketch" component={TextToSketchScreen} />
       <Stack.Screen name="PhotoToSketch" component={PhotoToSketchScreen} />
       <Stack.Screen name="Creation" component={CreationScreen} />
@@ -30,7 +29,8 @@ const MainNavigator = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Category" component={CategoryScreen} />
       <Stack.Screen name="Preview" component={PreviewScreen} />
-      {/* <Stack.Screen name="HowToUse" component={HowToUseScreen} /> */}
+      <Stack.Screen name="HowToUseScreen" component={HowToUseScreen} />
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
     </Stack.Navigator>
   );
 };

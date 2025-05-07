@@ -14,16 +14,13 @@ const getIconName = (iconType) => {
 
 const FeatureCard = ({ imageUri, title, color, onPress }) => {
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={[styles.card, { backgroundColor: color }]}
       onPress={onPress}
     >
       <View style={styles.iconContainer}>
-      <Image source={{ uri: imageUri }} style={{
-    width: 40,
-    height: 40,
-    resizeMode: 'contain',
-  }} />
+        <Image source={imageUri} style={{ width: 40, height: 40, resizeMode: 'contain' }} />
+
       </View>
       <Text style={styles.title}>{title}</Text>
       <Icon name="chevron-right" size={24} color="#fff" style={styles.arrow} />

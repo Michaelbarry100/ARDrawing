@@ -12,7 +12,12 @@ import FavoriteScreen from '../screens/FavoriteScreen';
 import TextDrawingScreen from '../screens/TextDrawingScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import ARDrawingCanvas from '../screens/ARDrawingCanvas';
-import HomeScreen from '../screens/HomeScreen'
+import HomeScreen from '../screens/HomeScreen';
+//import hotoToSketchScreen from '../screens/PhotoToSketchScreen';
+import PhotoToSketchScreen from '../screens/PhotoToSketchScreen';
+import TextToSketchScreen from '../screens/TextToSketchScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import HowToUseScreen from '../screens/HowToUseScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -20,12 +25,18 @@ const Stack = createNativeStackNavigator();
 const HomeStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="DrawingMain" component={DrawingScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="CreationScreen" component={DrawingScreen} />
+      <Stack.Screen name="PhotoToSketchScreen" component={PhotoToSketchScreen} />
+      <Stack.Screen name="TextToSketchScreen" component={TextToSketchScreen} />
+      <Stack.Screen name="CreationMain" component={CreationScreen} />
+      <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
       <Stack.Screen name="Category" component={CategoryScreen} />
       <Stack.Screen name="Preview" component={PreviewScreen} />
       <Stack.Screen name="ARDrawingCanvas" component={ARDrawingCanvas} />
       <Stack.Screen name="TextDrawing" component={TextDrawingScreen} />
+      <Stack.Screen name="HowToUseScreen" component={HowToUseScreen} />
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
     </Stack.Navigator>
   );
 };
@@ -33,8 +44,10 @@ const HomeStack = () => {
 const CreationStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="CreationMain" component={CreationScreen} />
+      <Stack.Screen name="CreationScreen" component={CreationScreen} />
       <Stack.Screen name="Preview" component={PreviewScreen} />
+      <Stack.Screen name="HowToUseScreen" component={HowToUseScreen} />
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
     </Stack.Navigator>
   );
 };
@@ -43,10 +56,10 @@ const ProfileStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ProfileMain" component={ProfileScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Creation" component={CreationScreen} />
-      <Stack.Screen name="Favorite" component={FavoriteScreen} />
-      <Stack.Screen name="Preview" component={PreviewScreen} />
+      <Stack.Screen name="CreationScreen" component={CreationScreen} />
+      <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen name="HowToUseScreen" component={HowToUseScreen} />
     </Stack.Navigator>
   );
 };

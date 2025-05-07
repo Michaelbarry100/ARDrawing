@@ -13,12 +13,12 @@ const ProfileScreen = ({ navigation }) => {
   };
 
   const menuItems = [
-    { id: 'creations', icon: 'palette', title: 'My Creations', screen: 'Creation' },
-    { id: 'favorites', icon: 'heart', title: 'My Favorites', screen: 'Favorite' },
+    { id: 'creations', icon: 'palette', title: 'My Creations', screen: 'CreationScreen' },
+    { id: 'favorites', icon: 'heart', title: 'My Favorites', screen: 'FavoriteScreen' },
     { id: 'notifications', icon: 'bell', title: 'Notifications', screen: 'Notifications' },
-    { id: 'settings', icon: 'cog', title: 'Settings', screen: 'Settings' },
+    { id: 'settings', icon: 'cog', title: 'Settings', screen: 'SettingsScreen' },
     { id: 'help', icon: 'help-circle', title: 'Help & Support', screen: 'Help' },
-    { id: 'about', icon: 'information', title: 'About App', screen: 'About' },
+    { id: 'about', icon: 'information', title: 'About App', screen: 'HowToUseScreen' },
   ];
 
   return (

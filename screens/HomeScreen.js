@@ -4,9 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FeatureCard from '../components/FeatureCard';
 import CategoryPreview from '../components/CategoryPreview';
-import DrawingScreen from './DrawingScreen';
+import { useNavigation } from '@react-navigation/native';
+//import DrawingScreen from './DrawingScreen';
+
 
 const HomeScreen = ({ navigation }) => {
+  //const navigation = useNavigation();
   const categories = [
     { id: 1, name: 'Aesthetics', image: require('../assets/favicon.png') },
     { id: 2, name: 'Animals', image: require('../assets/favicon.png'), locked: true },
@@ -15,10 +18,15 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      <View style={styles.header} >
+      <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
         <Icon name="menu" size={28} color="#000" />
-        <Text style={styles.headerTitle}>AR Drawing</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('')}>
+        </TouchableOpacity>
+        <View style={{justifyContent:"center", flexDirection: "row"}}>
+        <Text style={styles.headerTitle}>AR</Text>
+        <Text style={styles.headerTitle2}>Drawing</Text>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('HowToUseScreen')}>
           <Icon name="help-circle-outline" size={28} color="#000" />
         </TouchableOpacity>
       </View>
@@ -28,10 +36,10 @@ const HomeScreen = ({ navigation }) => {
           style={styles.bannerCard}
           onPress={() => navigation.navigate('DrawingScreen')}
         >
-          <Image 
+          {/* <Image 
             source={require('../assets/photoSketch.png')} 
             style={styles.bannerImage}
-          />
+          /> */}
           <View style={styles.bannerContent}>
             <Text style={styles.bannerTitle}>Start Drawing</Text>
             <Text style={styles.bannerSubtitle}>Start Your AR Drawing Journey Today</Text>
@@ -43,28 +51,28 @@ const HomeScreen = ({ navigation }) => {
 
         <View style={styles.featuresContainer}>
           <FeatureCard 
-            imageUri="text" 
+            imageUri={require('../assets/photoSketch.png')} 
             title="Text To Sketch" 
             color="#FFC278"
-            onPress={() => navigation.navigate('')}
+            onPress={() => navigation.navigate('TextToSketchScreen')}
           />
           <FeatureCard 
-            imageUri= "" 
+            imageUri= {require('../assets/photoSketch.png')}
             title="Photo To Sketch" 
             color="#75C6EF"
-            onPress={() => navigation.navigate('')}
+            onPress={() => navigation.navigate("PhotoToSketchScreen")}
           />
           <FeatureCard 
-            imageUri="creation" 
+            imageUri={require('../assets/photoSketch.png')} 
             title="Creation" 
             color="#90EE90"
-            onPress={() => navigation.navigate('Creation')}
+            onPress={() => navigation.navigate('CreationScreen')}
           />
           <FeatureCard 
-            imageUri="heart" 
+            imageUri={require('../assets/photoSketch.png')}
             title="Favorite" 
             color="#FF9AAD"
-            onPress={() => navigation.navigate('Favorite')}
+            onPress={() => navigation.navigate('FavoriteScreen')}
           />
         </View>
 
@@ -104,13 +112,19 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#6A3AEA'
+    color: '#9C27B0'
+  },
+  headerTitle2: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#fff00'
   },
   bannerCard: {
     margin: 16,
     borderRadius: 12,
     overflow: 'hidden',
-    backgroundColor: '#8A56EB'
+    backgroundColor: '#8A56EB',
+    //#9C27B0, #673AB7
   },
   bannerImage: {
     width: '100%',
