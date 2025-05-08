@@ -26,10 +26,10 @@ const HomeStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="CreationScreen" component={DrawingScreen} />
+      <Stack.Screen name="DrawingScreen" component={DrawingScreen} />
       <Stack.Screen name="PhotoToSketchScreen" component={PhotoToSketchScreen} />
       <Stack.Screen name="TextToSketchScreen" component={TextToSketchScreen} />
-      <Stack.Screen name="CreationMain" component={CreationScreen} />
+      <Stack.Screen name="CreationScreen" component={CreationScreen} />
       <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
       <Stack.Screen name="Category" component={CategoryScreen} />
       <Stack.Screen name="Preview" component={PreviewScreen} />

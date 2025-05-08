@@ -19,8 +19,7 @@ const FeatureCard = ({ imageUri, title, color, onPress }) => {
       onPress={onPress}
     >
       <View style={styles.iconContainer}>
-        <Image source={imageUri} style={{ width: 40, height: 40, resizeMode: 'contain' }} />
-
+        <Image source={imageUri} style={{ width: 50, height: 50, resizeMode: 'contain' }} />
       </View>
       <Text style={styles.title}>{title}</Text>
       <Icon name="chevron-right" size={24} color="#fff" style={styles.arrow} />
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     position: 'relative'
   },
   iconContainer: {
-    marginBottom: 12
+    marginBottom: 5
   },
   title: {
     fontSize: 16,

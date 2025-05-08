@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "spotify-clone",
-    "slug": "spotify-clone",
+    "name": "ARDrawing",
+    "slug": "ar-drawing",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

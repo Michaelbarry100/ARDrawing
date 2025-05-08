@@ -1,9 +1,51 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Linking, Share, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SettingsScreen = ({ navigation }) => {
+  const handleMoreApps = () => {
+    Linking.openURL('https://play.google.com/store/apps/dev?id=YOUR_DEVELOPER_ID')
+      .catch(() => Alert.alert('Error', 'Unable to open Play Store.'));
+  };
+
+  const handleRateUs = () => {
+    Linking.openURL('https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME')
+      .catch(() => Alert.alert('Error', 'Unable to open Play Store.'));
+  };
+
+  const handleShareApp = async () => {
+    try {
+      await Share.share({
+        message: 'Check out this amazing app: https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME',
+      });
+    } catch (error) {
+      Alert.alert('Error', 'Unable to share the app.');
+    }
+  };
+
+  const handleMenuPress = (id) => {
+    switch (id) {
+      case 1:
+        handleMoreApps();
+        break;
+      case 2:
+        handleShareApp();
+        break;
+      case 3:
+        handleRateUs();
+        break;
+      case 4:
+        navigation.navigate('PrivacyPolicyScreen'); // Ensure this screen exists
+        break;
+      case 5:
+        navigation.navigate('ReferUsersScreen'); // Ensure this screen exists
+        break;
+      default:
+        break;
+    }
+  };
+
   const menuItems = [
     { id: 1, title: 'More App', icon: 'grid' },
     { id: 2, title: 'Share App', icon: 'share-variant' },
@@ -19,12 +61,12 @@ const SettingsScreen = ({ navigation }) => {
           <Icon name="chevron-left" size={30} color="#000" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Setting</Text>
-        <View style={{ width: 30 }}></View>
+        <View style={{ width: 30 }} />
       </View>
 
       <View style={styles.featureCard}>
         <Image
-          source={require('../assets/favicon.png')}
+          source={require('../assets/girl-painting.png')}
           style={styles.featureIcon}
         />
         <View style={styles.featureContent}>
@@ -34,7 +76,7 @@ const SettingsScreen = ({ navigation }) => {
       </View>
 
       {menuItems.map(item => (
-        <TouchableOpacity key={item.id} style={styles.menuItem}>
+        <TouchableOpacity key={item.id} style={styles.menuItem} onPress={() => handleMenuPress(item.id)}>
           <View style={[styles.iconContainer, getIconBgColor(item.id)]}>
             <Icon name={item.icon} size={22} color="#fff" />
           </View>
