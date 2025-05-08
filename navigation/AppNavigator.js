@@ -18,6 +18,7 @@ import PhotoToSketchScreen from '../screens/PhotoToSketchScreen';
 import TextToSketchScreen from '../screens/TextToSketchScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import HowToUseScreen from '../screens/HowToUseScreen';
+import EditDrawing from '../screens/EditDrawing';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -37,6 +38,7 @@ const HomeStack = () => {
       <Stack.Screen name="TextDrawing" component={TextDrawingScreen} />
       <Stack.Screen name="HowToUseScreen" component={HowToUseScreen} />
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen name="EditDrawing" component={EditDrawing} />
     </Stack.Navigator>
   );
 };
@@ -45,6 +47,7 @@ const CreationStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="CreationScreen" component={CreationScreen} />
+      <Stack.Screen name="DrawingScreen" component={DrawingScreen} />
       <Stack.Screen name="Preview" component={PreviewScreen} />
       <Stack.Screen name="HowToUseScreen" component={HowToUseScreen} />
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
@@ -60,6 +63,7 @@ const ProfileStack = () => {
       <Stack.Screen name="FavoriteScreen" component={FavoriteScreen} />
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
       <Stack.Screen name="HowToUseScreen" component={HowToUseScreen} />
+      <Stack.Screen name="DrawingScreen" component={DrawingScreen} />
     </Stack.Navigator>
   );
 };
@@ -71,7 +75,7 @@ const AppNavigator = () => {
         headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          
+
           if (route.name === 'Home') {
             iconName = 'pencil';
           } else if (route.name === 'Creations') {
@@ -79,7 +83,7 @@ const AppNavigator = () => {
           } else if (route.name === 'Profile') {
             iconName = 'account';
           }
-          
+
           return <Icon name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#8A56EB',
