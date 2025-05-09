@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Slider from '@react-native-community/slider';
@@ -11,8 +11,9 @@ const TextToSketchScreen = ({ navigation }) => {
 
   const fonts = [
     { id: 'default', name: 'HELLO', style: {} },
-    { id: 'formal', name: 'HELLO', style: { fontFamily: 'sans-serif-light' } },
-    { id: 'cursive', name: 'HELLO', style: { fontFamily: 'cursive' } },
+    { id: 'light', name: 'HELLO', style: { fontFamily: 'sans-serif-light' } },
+    { id: 'serif', name: 'HELLO', style: { fontFamily: 'serif' } },
+    { id: 'mono', name: 'HELLO', style: { fontFamily: 'monospace' } },
   ];
 
   return (
@@ -28,7 +29,7 @@ const TextToSketchScreen = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.inputContainer}>
           <TextInput
-            style={styles.textInput}
+            style={[styles.textInput, { fontSize }]} // 👈 Dynamic font size
             placeholder="Enter Your Text"
             value={text}
             onChangeText={setText}
@@ -63,7 +64,9 @@ const TextToSketchScreen = ({ navigation }) => {
                 ]}
                 onPress={() => setSelectedFont(font.id)}
               >
-                <Text style={[styles.fontSample, font.style]}>{font.name}</Text>
+                <Text style={[styles.fontSample, font.style]}>
+                  {font.name}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -81,10 +84,7 @@ const TextToSketchScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
+  container: { flex: 1, backgroundColor: '#fff' },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -92,15 +92,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12
   },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#000'
-  },
-  content: {
-    padding: 16,
-    flexGrow: 1
-  },
+  headerTitle: { fontSize: 20, fontWeight: '600', color: '#000' },
+  content: { padding: 16, flexGrow: 1 },
   inputContainer: {
     borderWidth: 1,
     borderColor: '#8A56EB',
@@ -110,24 +103,18 @@ const styles = StyleSheet.create({
     marginBottom: 24
   },
   textInput: {
-    fontSize: 16,
     color: '#333',
     textAlignVertical: 'top',
     minHeight: 100
   },
-  section: {
-    marginBottom: 24
-  },
+  section: { marginBottom: 24 },
   sectionTitle: {
     fontSize: 16,
     fontWeight: '600',
     marginBottom: 16,
     color: '#333'
   },
-  slider: {
-    width: '100%',
-    height: 40
-  },
+  slider: { width: '100%', height: 40 },
   fontOptions: {
     flexDirection: 'column',
     gap: 12
@@ -144,7 +131,6 @@ const styles = StyleSheet.create({
     borderColor: '#8A56EB'
   },
   fontSample: {
-    fontSize: 16,
     fontWeight: '500',
     color: '#333'
   },
@@ -161,6 +147,5 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   }
 });
-
 
 export default TextToSketchScreen;

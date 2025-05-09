@@ -1,11 +1,44 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const PhotoToSketchScreen = ({ navigation }) => {
-  // Mock data for the example image
-  const [imageSource, setImageSource] = useState(require('../assets/favicon.png'));
+  const [imageSource, setImageSource] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const cameraStatus = await ImagePicker.requestCameraPermissionsAsync();
+      const mediaStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (cameraStatus.status !== 'granted' || mediaStatus.status !== 'granted') {
+        Alert.alert('Permission required', 'Please enable camera and media library permissions.');
+      }
+    })();
+  }, []);
+
+  const pickImageFromGallery = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImageSource({ uri: result.assets[0].uri });
+    }
+  };
+
+  const takePhotoWithCamera = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+      saveToPhotos: true,
+    });
+
+    if (!result.canceled) {
+      setImageSource({ uri: result.assets[0].uri });
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -14,33 +47,38 @@ const PhotoToSketchScreen = ({ navigation }) => {
           <Icon name="chevron-left" size={30} color="#000" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Photo To Sketch</Text>
-        <View style={{ width: 30 }}></View>
+        <View style={{ width: 30 }} />
       </View>
 
       <View style={styles.imagePreview}>
-        <Image source={imageSource} style={styles.previewImage} />
+        {imageSource ? (
+          <Image source={imageSource} style={styles.previewImage} />
+        ) : (
+          <Text style={{ color: '#999' }}>No Image Selected</Text>
+        )}
       </View>
 
       <View style={styles.optionsContainer}>
-        <TouchableOpacity style={styles.optionButton}>
+        <TouchableOpacity style={styles.optionButton} onPress={pickImageFromGallery}>
           <Icon name="image" size={24} color="#fff" />
           <Text style={styles.optionText}>Image From Gallery</Text>
           <Text style={styles.optionDescription}>
-            To start drawing, just pick up a pencil and let your lines flow.
+            Select an image to start sketching.
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.optionButton, styles.optionOrange]}>
+        <TouchableOpacity style={[styles.optionButton, styles.optionOrange]} onPress={takePhotoWithCamera}>
           <Icon name="camera" size={24} color="#fff" />
           <Text style={styles.optionText}>Image From Camera</Text>
           <Text style={styles.optionDescription}>
-            To start drawing, just pick up a pencil and let your lines flow.
+            Take a new photo to start sketching.
           </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
