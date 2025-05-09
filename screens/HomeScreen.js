@@ -13,24 +13,47 @@ const HomeScreen = ({ navigation }) => {
       items: [
         { id: 1, image: require('../assets/favicon.png'), locked: false },
         { id: 2, image: require('../assets/favicon.png'), locked: false },
+        { id: 3, image: require('../assets/favicon.png'), locked: false },
+        { id: 4, image: require('../assets/favicon.png'), locked: false },
+        { id: 5, image: require('../assets/favicon.png'), locked: false },
+        { id: 6, image: require('../assets/favicon.png'), locked: false },
       ],
     },
     {
       id: 2,
       name: 'Animals',
       items: [
-        { id: 3, image: require('../assets/favicon.png'), locked: true },
-        { id: 4, image: require('../assets/favicon.png'), locked: true },
+        { id: 7, image: require('../assets/favicon.png'), locked: true },
+        { id: 8, image: require('../assets/favicon.png'), locked: true },
+        { id: 9, image: require('../assets/favicon.png'), locked: false },
+        { id: 10, image: require('../assets/favicon.png'), locked: false },
+        { id: 11, image: require('../assets/favicon.png'), locked: false },
+        { id: 12, image: require('../assets/favicon.png'), locked: false },
       ],
     },
     {
       id: 3,
       name: 'Anime',
       items: [
-        { id: 5, image: require('../assets/favicon.png'), locked: false },
-        { id: 6, image: require('../assets/favicon.png'), locked: true },
+        { id: 13, image: require('../assets/favicon.png'), locked: false },
+        { id: 14, image: require('../assets/favicon.png'), locked: true },
+        { id: 15, image: require('../assets/favicon.png'), locked: false },
+        { id: 16, image: require('../assets/favicon.png'), locked: false },
+        { id: 17, image: require('../assets/favicon.png'), locked: false },
+        { id: 18, image: require('../assets/favicon.png'), locked: false },
       ],
     },
+    {id: 4,
+      name: 'Flowers',
+      items: [
+        { id: 19, image: require('../assets/favicon.png'), locked: true },
+        { id: 20, image: require('../assets/favicon.png'), locked: true },
+        { id: 21, image: require('../assets/favicon.png'), locked: false },
+        { id: 22, image: require('../assets/favicon.png'), locked: false },
+        { id: 23, image: require('../assets/favicon.png'), locked: false },
+        { id: 24, image: require('../assets/favicon.png'), locked: false },
+      ],
+    }
   ];
 
   return (
@@ -49,10 +72,12 @@ const HomeScreen = ({ navigation }) => {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
+      <TouchableOpacity onPress={() => navigation.navigate('DrawingScreen')}>
+      <Image source={require('../assets/girl-painting.png')} style={styles.bannerImage} />
         <LinearGradient colors={['#D986E7', '#9C27B0']} style={styles.bannerCard}>
           <TouchableOpacity onPress={() => navigation.navigate('DrawingScreen')}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Image source={require('../assets/girl-painting.png')} style={styles.bannerImage} />
+              <View />
               <View style={styles.bannerContent}>
                 <Text style={styles.bannerTitle}>Start Drawing</Text>
                 <Text style={styles.bannerSubtitle}>Start Your AR Drawing Journey Today</Text>
@@ -63,6 +88,7 @@ const HomeScreen = ({ navigation }) => {
             </View>
           </TouchableOpacity>
         </LinearGradient>
+      </TouchableOpacity>
 
         <View style={styles.featuresContainer}>
           <FeatureCard
@@ -129,10 +155,10 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: 20, fontWeight: '600', color: '#9C27B0' },
   headerTitle2: { fontSize: 20, fontWeight: '600', color: '#000' },
   bannerCard: { margin: 16, borderRadius: 12, overflow: 'hidden' },
-  bannerImage: { width: '38%', height: 120 },
+  bannerImage: { width: '40%', height: 135, position: 'absolute',zIndex: 100,left: 5, resizeMode: 'contain'  },
   bannerContent: { padding: 16 },
   bannerTitle: { fontSize: 24, fontWeight: '700', color: '#fff', marginBottom: 4 },
-  bannerSubtitle: { fontSize: 12, color: 'rgba(255, 255, 255, 0.9)', marginBottom: 12 },
+  bannerSubtitle: { fontSize: 10, color: 'rgba(255, 255, 255, 0.9)', marginBottom: 12 },
   bannerButton: {
     backgroundColor: '#fff',
     paddingHorizontal: 16,

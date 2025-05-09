@@ -25,7 +25,7 @@ const ProfileScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Profile</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('HowToUseScreen')}>
           <Icon name="dots-vertical" size={28} color="#000" />
         </TouchableOpacity>
       </View>
